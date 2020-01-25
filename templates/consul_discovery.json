@@ -1,0 +1,19 @@
+{
+  "services": [
+  {
+    "name": "nginx-{{app.key}}",
+    "tags": ["nginx"],
+    "port": {{app.value.nginx.endpoints.http.port}},
+    "checks": [
+    {
+      "http": "{{app.value.nginx.endpoints.http.scheme}}://localhost:{{app.value.nginx.endpoints.http.port}}/",
+      "method": "GET",
+      "header": {"Host": ["{{app.value.nginx.endpoints.http.address}}"] },
+      "interval": "5s",
+      "timeout": "1s"
+    }
+    ]
+  }
+  ]
+}
+
