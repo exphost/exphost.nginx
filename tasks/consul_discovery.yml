@@ -11,5 +11,7 @@
       template:
         src: consul_discovery.json
         dest: "/app/shared/consul/conf/nginx-{{app.key}}.json"
+      when: _consul_dir.stat.isdir|default(False)
+
   become: True
   become_user: root
